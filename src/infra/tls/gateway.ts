@@ -5,7 +5,7 @@ import path from "node:path";
 import tls from "node:tls";
 import { promisify } from "node:util";
 import type { GatewayTlsConfig } from "../../config/types.gateway.js";
-import { CONFIG_DIR, ensureDir, resolveUserPath, shortenHomeInString } from "../../utils.js";
+import { ensureDir, getConfigDir, resolveUserPath, shortenHomeInString } from "../../utils.js";
 import { resolveSystemBin } from "../resolve-system-bin.js";
 import { normalizeFingerprint } from "./fingerprint.js";
 
@@ -80,7 +80,7 @@ export async function loadGatewayTlsRuntime(
   }
 
   const autoGenerate = cfg.autoGenerate !== false;
-  const baseDir = path.join(CONFIG_DIR, "gateway", "tls");
+  const baseDir = path.join(getConfigDir(), "gateway", "tls");
   const certPath = resolveUserPath(cfg.certPath ?? path.join(baseDir, "gateway-cert.pem"));
   const keyPath = resolveUserPath(cfg.keyPath ?? path.join(baseDir, "gateway-key.pem"));
   const caPath = cfg.caPath ? resolveUserPath(cfg.caPath) : undefined;

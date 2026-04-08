@@ -210,5 +210,9 @@ export function displayString(input: string): string {
   return shortenHomeInString(input);
 }
 
-// Configuration root; can be overridden via OPENCLAW_STATE_DIR.
-export const CONFIG_DIR = resolveConfigDir();
+export function getConfigDir(
+  env: NodeJS.ProcessEnv = process.env,
+  homedir: () => string = os.homedir,
+): string {
+  return resolveConfigDir(env, homedir);
+}

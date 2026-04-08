@@ -13,7 +13,7 @@ import { resolveChannelRemoteInboundAttachmentRoots } from "../../media/channel-
 import { isInboundPathAllowed } from "../../media/inbound-path-policy.js";
 import { getMediaDir, MEDIA_MAX_BYTES } from "../../media/store.js";
 import { normalizeOptionalString } from "../../shared/string-coerce.js";
-import { CONFIG_DIR } from "../../utils.js";
+import { getConfigDir } from "../../utils.js";
 import type { MsgContext, TemplateContext } from "../templating.js";
 
 const STAGED_MEDIA_MAX_BYTES = MEDIA_MAX_BYTES;
@@ -40,7 +40,7 @@ export async function stageSandboxMedia(params: {
 
   // For remote attachments without sandbox, use ~/.openclaw/media (not agent workspace for privacy)
   const remoteMediaCacheDir = ctx.MediaRemoteHost
-    ? path.join(CONFIG_DIR, "media", "remote-cache", sessionKey)
+    ? path.join(getConfigDir(), "media", "remote-cache", sessionKey)
     : null;
   const effectiveWorkspaceDir = sandbox?.workspaceDir ?? remoteMediaCacheDir;
   if (!effectiveWorkspaceDir) {

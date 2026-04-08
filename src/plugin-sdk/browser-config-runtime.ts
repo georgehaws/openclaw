@@ -15,4 +15,4 @@ export {
 } from "../config/port-defaults.js";
 export { normalizePluginsConfig, resolveEffectiveEnableState } from "../plugins/config-state.js";
 export { parseBooleanValue } from "../utils/boolean.js";
-export { CONFIG_DIR, escapeRegExp, resolveUserPath, shortenHomePath } from "../utils.js";
+export { escapeRegExp, getConfigDir, resolveUserPath, shortenHomePath } from "../utils.js";

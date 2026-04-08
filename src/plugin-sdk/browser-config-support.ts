@@ -5,4 +5,4 @@ export {
   deriveDefaultBrowserControlPort,
 } from "../config/port-defaults.js";
 export { isLoopbackHost } from "../gateway/net.js";
-export { CONFIG_DIR, escapeRegExp, resolveUserPath, shortenHomePath } from "../utils.js";
+export { escapeRegExp, getConfigDir, resolveUserPath, shortenHomePath } from "../utils.js";

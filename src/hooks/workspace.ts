@@ -5,7 +5,7 @@ import type { OpenClawConfig } from "../config/config.js";
 import { openBoundaryFileSync } from "../infra/boundary-file-read.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
 import { isPathInsideWithRealpath } from "../security/scan-paths.js";
-import { CONFIG_DIR, resolveUserPath } from "../utils.js";
+import { getConfigDir, resolveUserPath } from "../utils.js";
 import { resolveBundledHooksDir } from "./bundled-dir.js";
 import { shouldIncludeHook } from "./config.js";
 import {
@@ -247,7 +247,7 @@ export function discoverWorkspaceHookEntries(
     bundledHooksDir?: string;
   },
 ): HookEntry[] {
-  const managedHooksDir = opts?.managedHooksDir ?? path.join(CONFIG_DIR, "hooks");
+  const managedHooksDir = opts?.managedHooksDir ?? path.join(getConfigDir(), "hooks");
   const workspaceHooksDir = path.join(workspaceDir, "hooks");
   const bundledHooksDir = opts?.bundledHooksDir ?? resolveBundledHooksDir();
   const extraDirsRaw = opts?.config?.hooks?.internal?.load?.extraDirs ?? [];

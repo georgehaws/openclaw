@@ -4,7 +4,7 @@ import { MANIFEST_KEY } from "../compat/legacy-names.js";
 import { resolveSafeInstallDir, unscopedPackageName } from "../infra/install-safe-path.js";
 import { type NpmIntegrityDrift, type NpmSpecResolution } from "../infra/install-source-utils.js";
 import type { InstallSafetyOverrides } from "../plugins/install-security-scan.js";
-import { CONFIG_DIR, resolveUserPath } from "../utils.js";
+import { getConfigDir, resolveUserPath } from "../utils.js";
 import { parseFrontmatter } from "./frontmatter.js";
 
 let hookInstallRuntimePromise: Promise<typeof import("./install.runtime.js")> | undefined;
@@ -85,7 +85,7 @@ function validateHookId(hookId: string): string | null {
 }
 
 export function resolveHookInstallDir(hookId: string, hooksDir?: string): string {
-  const hooksBase = hooksDir ? resolveUserPath(hooksDir) : path.join(CONFIG_DIR, "hooks");
+  const hooksBase = hooksDir ? resolveUserPath(hooksDir) : path.join(getConfigDir(), "hooks");
   const hookIdError = validateHookId(hookId);
   if (hookIdError) {
     throw new Error(hookIdError);
@@ -118,7 +118,7 @@ async function resolveInstallTargetDir(
   hooksDir?: string,
 ): Promise<{ ok: true; targetDir: string } | { ok: false; error: string }> {
   const runtime = await loadHookInstallRuntime();
-  const baseHooksDir = hooksDir ? resolveUserPath(hooksDir) : path.join(CONFIG_DIR, "hooks");
+  const baseHooksDir = hooksDir ? resolveUserPath(hooksDir) : path.join(getConfigDir(), "hooks");
   return await runtime.resolveCanonicalInstallTarget({
     baseDir: baseHooksDir,
     id,

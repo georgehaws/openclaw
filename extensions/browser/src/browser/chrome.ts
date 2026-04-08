@@ -7,7 +7,7 @@ import type { SsrFPolicy } from "../infra/net/ssrf.js";
 import { ensurePortAvailable } from "../infra/ports.js";
 import { rawDataToString } from "../infra/ws.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
-import { CONFIG_DIR } from "../utils.js";
+import { getConfigDir } from "../utils.js";
 import {
   CHROME_BOOTSTRAP_EXIT_TIMEOUT_MS,
   CHROME_BOOTSTRAP_PREFS_TIMEOUT_MS,
@@ -79,7 +79,7 @@ function resolveBrowserExecutable(resolved: ResolvedBrowserConfig): BrowserExecu
 }
 
 export function resolveOpenClawUserDataDir(profileName = DEFAULT_OPENCLAW_BROWSER_PROFILE_NAME) {
-  return path.join(CONFIG_DIR, "browser", profileName, "user-data");
+  return path.join(getConfigDir(), "browser", profileName, "user-data");
 }
 
 function cdpUrlForPort(cdpPort: number) {

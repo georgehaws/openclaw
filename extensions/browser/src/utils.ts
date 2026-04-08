@@ -1,6 +1,6 @@
 export {
-  CONFIG_DIR,
   escapeRegExp,
+  getConfigDir,
   resolveUserPath,
   shortenHomePath,
 } from "openclaw/plugin-sdk/browser-config-support";

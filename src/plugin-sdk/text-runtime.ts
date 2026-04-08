@@ -39,7 +39,6 @@ export {
   readStringValue,
 } from "../shared/string-coerce.js";
 export {
-  CONFIG_DIR,
   clamp,
   clampInt,
   clampNumber,
@@ -47,6 +46,7 @@ export {
   displayString,
   ensureDir,
   escapeRegExp,
+  getConfigDir,
   isRecord,
   normalizeE164,
   pathExists,

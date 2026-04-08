@@ -2,7 +2,7 @@ import path from "node:path";
 import type { OpenClawConfig } from "../config/config.js";
 import { evaluateEntryRequirementsForCurrentPlatform } from "../shared/entry-status.js";
 import type { RequirementConfigCheck, Requirements } from "../shared/requirements.js";
-import { CONFIG_DIR } from "../utils.js";
+import { getConfigDir } from "../utils.js";
 import { hasBinary, isConfigPathTruthy } from "./config.js";
 import {
   resolveHookConfig,
@@ -148,7 +148,7 @@ export function buildWorkspaceHookStatus(
     eligibility?: HookEligibilityContext;
   },
 ): HookStatusReport {
-  const managedHooksDir = opts?.managedHooksDir ?? path.join(CONFIG_DIR, "hooks");
+  const managedHooksDir = opts?.managedHooksDir ?? path.join(getConfigDir(), "hooks");
   const hookEntries = resolveHookEntries(
     opts?.entries ?? loadWorkspaceHookEntries(workspaceDir, opts),
   );
