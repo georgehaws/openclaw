@@ -2,7 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { normalizeLowercaseStringOrEmpty } from "../shared/string-coerce.js";
-import { CONFIG_DIR, ensureDir } from "../utils.js";
+import { ensureDir, getConfigDir } from "../utils.js";
 
 export function normalizeWideAreaDomain(raw?: string | null): string | null {
   const trimmed = raw?.trim();
@@ -26,7 +26,7 @@ function zoneFilenameForDomain(domain: string): string {
 }
 
 export function getWideAreaZonePath(domain: string): string {
-  return path.join(CONFIG_DIR, "dns", zoneFilenameForDomain(domain));
+  return path.join(getConfigDir(), "dns", zoneFilenameForDomain(domain));
 }
 
 function dnsLabel(raw: string, fallback: string): string {

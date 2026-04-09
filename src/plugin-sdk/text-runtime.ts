@@ -38,25 +38,23 @@ export {
   normalizeStringifiedOptionalString,
   readStringValue,
 } from "../shared/string-coerce.js";
+export { clamp, clampInt, clampNumber, ensureDir, pathExists } from "../utils.js";
 export {
-  CONFIG_DIR,
-  clamp,
-  clampInt,
-  clampNumber,
-  displayPath,
-  displayString,
-  ensureDir,
   escapeRegExp,
   isRecord,
   normalizeE164,
-  pathExists,
-  resolveConfigDir,
-  resolveHomeDir,
-  resolveUserPath,
   safeParseJson,
-  shortenHomeInString,
-  shortenHomePath,
   sleep,
   sliceUtf16Safe,
   truncateUtf16Safe,
-} from "../utils.js";
+} from "../utils/browser-safe.js";
+export {
+  displayPath,
+  displayString,
+  getConfigDir,
+  resolveConfigDir,
+  resolveHomeDir,
+  resolveUserPath,
+  shortenHomeInString,
+  shortenHomePath,
+} from "../utils/node-paths.js";

@@ -107,7 +107,7 @@ export {
   shouldIncludeSupplementalContext,
 } from "../security/context-visibility.js";
 export { formatDocsLink } from "../terminal/links.js";
-export { sleep } from "../utils.js";
+export { sleep } from "../utils/browser-safe.js";
 export { loadWebMedia } from "./web-media.js";
 export type { WizardPrompter } from "../wizard/prompts.js";
 export { keepHttpServerTaskAlive } from "./channel-lifecycle.core.js";

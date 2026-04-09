@@ -9,7 +9,7 @@ import {
 } from "../infra/install-safe-path.js";
 import { type NpmIntegrityDrift, type NpmSpecResolution } from "../infra/install-source-utils.js";
 import { normalizeOptionalString } from "../shared/string-coerce.js";
-import { CONFIG_DIR, resolveUserPath } from "../utils.js";
+import { getConfigDir, resolveUserPath } from "../utils.js";
 import type { InstallSecurityScanResult } from "./install-security-scan.js";
 import type { InstallSafetyOverrides } from "./install-security-scan.js";
 import {
@@ -421,7 +421,7 @@ async function installPluginDirectoryIntoExtensions(params: {
 export function resolvePluginInstallDir(pluginId: string, extensionsDir?: string): string {
   const extensionsBase = extensionsDir
     ? resolveUserPath(extensionsDir)
-    : path.join(CONFIG_DIR, "extensions");
+    : path.join(getConfigDir(), "extensions");
   const pluginIdError = validatePluginId(pluginId);
   if (pluginIdError) {
     throw new Error(pluginIdError);
@@ -446,7 +446,7 @@ async function resolvePluginInstallTarget(params: {
 }): Promise<{ ok: true; targetDir: string } | { ok: false; error: string }> {
   const extensionsDir = params.extensionsDir
     ? resolveUserPath(params.extensionsDir)
-    : path.join(CONFIG_DIR, "extensions");
+    : path.join(getConfigDir(), "extensions");
   return await params.runtime.resolveCanonicalInstallTarget({
     baseDir: extensionsDir,
     id: params.pluginId,
@@ -848,7 +848,7 @@ export async function installPluginFromFile(params: {
 
   const extensionsDir = params.extensionsDir
     ? resolveUserPath(params.extensionsDir)
-    : path.join(CONFIG_DIR, "extensions");
+    : path.join(getConfigDir(), "extensions");
   await fs.mkdir(extensionsDir, { recursive: true });
 
   const base = path.basename(filePath, path.extname(filePath));

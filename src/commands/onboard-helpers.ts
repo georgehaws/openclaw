@@ -22,7 +22,7 @@ import { runCommandWithTimeout } from "../process/exec.js";
 import type { RuntimeEnv } from "../runtime.js";
 import { normalizeOptionalString } from "../shared/string-coerce.js";
 import { stylePromptTitle } from "../terminal/prompt-style.js";
-import { CONFIG_DIR, shortenHomeInString, shortenHomePath, sleep } from "../utils.js";
+import { getConfigDir, shortenHomeInString, shortenHomePath, sleep } from "../utils.js";
 import { VERSION } from "../version.js";
 import type { NodeManagerChoice, OnboardMode, ResetScope } from "./onboard-types.js";
 
@@ -213,7 +213,7 @@ export async function handleReset(scope: ResetScope, workspaceDir: string, runti
   if (scope === "config") {
     return;
   }
-  await moveToTrash(path.join(CONFIG_DIR, "credentials"), runtime);
+  await moveToTrash(path.join(getConfigDir(), "credentials"), runtime);
   await moveToTrash(resolveSessionTranscriptsDirForAgent(), runtime);
   if (scope === "full") {
     await moveToTrash(workspaceDir, runtime);

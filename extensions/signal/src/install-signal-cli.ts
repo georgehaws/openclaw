@@ -7,7 +7,11 @@ import { pipeline } from "node:stream/promises";
 import { formatErrorMessage } from "openclaw/plugin-sdk/error-runtime";
 import { runPluginCommandWithTimeout } from "openclaw/plugin-sdk/run-command";
 import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
-import { CONFIG_DIR, extractArchive, resolveBrewExecutable } from "openclaw/plugin-sdk/setup-tools";
+import {
+  extractArchive,
+  getConfigDir,
+  resolveBrewExecutable,
+} from "openclaw/plugin-sdk/setup-tools";
 import { normalizeLowercaseStringOrEmpty } from "openclaw/plugin-sdk/text-runtime";
 
 export type ReleaseAsset = {
@@ -253,7 +257,7 @@ async function installSignalCliFromRelease(runtime: RuntimeEnv): Promise<SignalI
   runtime.log(`Downloading signal-cli ${version} (${asset.name})…`);
   await downloadToFile(asset.browser_download_url, archivePath);
 
-  const installRoot = path.join(CONFIG_DIR, "tools", "signal-cli", version);
+  const installRoot = path.join(getConfigDir(), "tools", "signal-cli", version);
   await fs.mkdir(installRoot, { recursive: true });
 
   if (!looksLikeArchive(normalizeLowercaseStringOrEmpty(asset.name))) {

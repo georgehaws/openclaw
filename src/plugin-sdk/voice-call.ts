@@ -17,4 +17,4 @@ export {
 export { fetchWithSsrFGuard } from "../infra/net/fetch-guard.js";
 export type { SessionEntry } from "../config/sessions/types.js";
 export type { OpenClawPluginApi } from "../plugins/types.js";
-export { sleep } from "../utils.js";
+export { sleep } from "../utils/browser-safe.js";

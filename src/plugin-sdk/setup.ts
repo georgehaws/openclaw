@@ -22,7 +22,8 @@ export { formatCliCommand } from "../cli/command-format.js";
 export { detectBinary } from "../plugins/setup-binary.js";
 export { formatDocsLink } from "../terminal/links.js";
 export { hasConfiguredSecretInput, normalizeSecretInputString } from "../config/types.secrets.js";
-export { normalizeE164, pathExists } from "../utils.js";
+export { pathExists } from "../utils.js";
+export { normalizeE164 } from "../utils/browser-safe.js";
 
 export {
   moveSingleAccountChannelSectionToDefaultAccount,

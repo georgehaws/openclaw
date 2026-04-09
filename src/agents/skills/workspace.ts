@@ -5,7 +5,7 @@ import type { OpenClawConfig } from "../../config/config.js";
 import { isPathInside } from "../../infra/path-guards.js";
 import { createSubsystemLogger } from "../../logging/subsystem.js";
 import { normalizeOptionalString } from "../../shared/string-coerce.js";
-import { CONFIG_DIR, resolveUserPath } from "../../utils.js";
+import { getConfigDir, resolveUserPath } from "../../utils.js";
 import { resolveSandboxPath } from "../sandbox-paths.js";
 import { resolveEffectiveAgentSkillFilter } from "./agent-filter.js";
 import { resolveBundledSkillsDir } from "./bundled-dir.js";
@@ -407,7 +407,7 @@ function loadSkillEntries(
     return loadedSkills;
   };
 
-  const managedSkillsDir = opts?.managedSkillsDir ?? path.join(CONFIG_DIR, "skills");
+  const managedSkillsDir = opts?.managedSkillsDir ?? path.join(getConfigDir(), "skills");
   const workspaceSkillsDir = path.resolve(workspaceDir, "skills");
   const bundledSkillsDir = opts?.bundledSkillsDir ?? resolveBundledSkillsDir();
   const extraDirsRaw = opts?.config?.skills?.load?.extraDirs ?? [];

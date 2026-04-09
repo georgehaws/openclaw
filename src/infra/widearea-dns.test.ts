@@ -85,7 +85,7 @@ describe("wide-area DNS discovery domain helpers", () => {
 
   it("builds the default zone path from the normalized domain", () => {
     expect(getWideAreaZonePath("openclaw.internal.")).toBe(
-      path.join(utils.CONFIG_DIR, "dns", "openclaw.internal.db"),
+      path.join(utils.getConfigDir(), "dns", "openclaw.internal.db"),
     );
   });
 });
